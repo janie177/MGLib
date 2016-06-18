@@ -1,4 +1,4 @@
-package net.minegusta.mglib.vault;
+package net.minegusta.mglib.permissionsex;
 
 import org.bukkit.entity.Player;
 import ru.tehkode.permissions.PermissionUser;

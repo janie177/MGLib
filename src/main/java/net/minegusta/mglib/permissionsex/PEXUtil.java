@@ -1,4 +1,4 @@
-package net.minegusta.mglib.vault;
+package net.minegusta.mglib.permissionsex;
 
 import com.google.common.collect.Lists;
 import org.bukkit.entity.Player;

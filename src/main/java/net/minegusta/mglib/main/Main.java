@@ -1,7 +1,7 @@
 package net.minegusta.mglib.main;
 
 import net.minegusta.mglib.tasks.TaskManager;
-import net.minegusta.mglib.vault.PEXUtil;
+import net.minegusta.mglib.permissionsex.PEXUtil;
 import net.minegusta.mglib.worldguard.WorldGuardHelper;
 import net.minegusta.mglib.worldguard.WorldGuardUtil;
 import org.bukkit.Bukkit;

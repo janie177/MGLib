@@ -13,7 +13,7 @@ public class GUIHandler {
 
 	private MenuInventoryHolder holder;
 	private MenuListener listener;
-	
+
 	private ConcurrentMap<Integer, GUIAction> actionMap = Maps.newConcurrentMap();
 
 	public GUIHandler(Plugin plugin, String name, int rows)
