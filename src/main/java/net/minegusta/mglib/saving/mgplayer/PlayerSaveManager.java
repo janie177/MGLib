@@ -28,7 +28,7 @@ public class PlayerSaveManager<T extends MGPlayerModel> {
 	{
 		this.plugin = plugin;
 		this.playerClass = playerClass;
-		savetask.start(Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, this::saveAllMGPlayers, 20 * saveInterval, 20 * saveInterval));
+		if(saveInterval > 0) savetask.start(Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, this::saveAllMGPlayers, 20 * saveInterval, 20 * saveInterval));
 		Bukkit.getPluginManager().registerEvents(new PlayerSaveListener(this), plugin);
 	}
 

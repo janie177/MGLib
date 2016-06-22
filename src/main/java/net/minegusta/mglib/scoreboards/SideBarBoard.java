@@ -29,7 +29,7 @@ public class SideBarBoard extends ScoreBoardModel {
 		for(MGScore score : scores)
 		{
 			Score s = objective.getScore(score.getName());
-			s.setScore(s.getScore());
+			s.setScore(score.getAmount());
 		}
 	}
 
@@ -53,7 +53,7 @@ public class SideBarBoard extends ScoreBoardModel {
 		for(MGScore score : scores)
 		{
 			Score s = objective.getScore(score.getName());
-			s.setScore(s.getScore());
+			s.setScore(score.getAmount());
 		}
 
 

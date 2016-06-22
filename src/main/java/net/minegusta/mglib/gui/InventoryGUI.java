@@ -4,11 +4,12 @@ import com.google.common.collect.Maps;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 
 import java.util.Collection;
 import java.util.concurrent.ConcurrentMap;
 
-public abstract class InventoryGUI{
+public abstract class InventoryGUI {
 
 	private String name;
 	private int rows;
@@ -24,11 +25,11 @@ public abstract class InventoryGUI{
 		GUIRegistry.addGUI(key, this);
 	}
 
-	public abstract Inventory buildInventory(Player player, String name);
+	public abstract Inventory buildInventory(Player player, int slots, InventoryHolder holder, String name);
 
-	public void openInventory(Player player, String title)
+	public void openInventory(Player player)
 	{
-		Inventory inv = buildInventory(player, title);
+		Inventory inv = buildInventory(player, rows * 9, holder, name);
 		player.openInventory(inv);
 		if(getAnimationInterval() > 0) addInv(inv);
 	}
@@ -40,7 +41,10 @@ public abstract class InventoryGUI{
 		GUIRegistry.remove(getKey());
 	}
 
-
+	public GUIInventoryHolder getHolder()
+	{
+		return holder;
+	}
 
 	protected void addInv(Inventory inv)
 	{
@@ -66,5 +70,13 @@ public abstract class InventoryGUI{
 	public String getKey()
 	{
 		return holder.getKey();
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public String getName() {
+		return name;
 	}
 }

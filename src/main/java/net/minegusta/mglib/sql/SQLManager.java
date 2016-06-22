@@ -4,7 +4,9 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.bukkit.Bukkit;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Optional;
 
 public class SQLManager {
 
@@ -23,7 +25,6 @@ public class SQLManager {
 	private String databaseName;
 
 	private ComboPooledDataSource cpds = new ComboPooledDataSource();
-
 
 	private SQLManager(String databaseName, String user, String password, String url, String driver)
 	{
@@ -57,7 +58,7 @@ public class SQLManager {
 			SQLUtil.createDB(user, password, url, databaseName);
 
 			cpds.setDriverClass(driver);
-			cpds.setJdbcUrl("jdbc:mysql://localhost:3306/" + databaseName);
+			cpds.setJdbcUrl(url + databaseName);
 			cpds.setUser(user);
 			cpds.setPassword(password);
 		} catch (Exception e){
@@ -121,10 +122,28 @@ public class SQLManager {
 			stmt.close();
 			conn.close();
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 		return true;
 	}
+
+	public Optional<ResultSet> executeQuery(String statement)
+	{
+		try {
+			Connection conn = getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet set = stmt.executeQuery(statement);
+			stmt.close();
+			conn.close();
+
+			return Optional.of(set);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Optional.empty();
+	}
+
 
 	public void closePool()
 	{

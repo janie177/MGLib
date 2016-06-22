@@ -11,17 +11,17 @@ class GUIRegistry {
 
 	static void addGUI(String key, InventoryGUI gui)
 	{
-		inventories.put(key, gui);
+		inventories.put(key.toLowerCase(), gui);
 	}
 
 	static InventoryGUI getGUI(String key)
 	{
-		return inventories.get(key);
+		return inventories.get(key.toLowerCase());
 	}
 
 	static boolean contains(String key)
 	{
-		return inventories.containsKey(key);
+		return inventories.containsKey(key.toLowerCase());
 	}
 
 	static Collection<InventoryGUI> getAllGUIs()
@@ -31,6 +31,6 @@ class GUIRegistry {
 
 	static void remove(String key)
 	{
-		if(inventories.containsKey(key)) inventories.remove(key);
+		if(inventories.containsKey(key.toLowerCase())) inventories.remove(key.toLowerCase());
 	}
 }

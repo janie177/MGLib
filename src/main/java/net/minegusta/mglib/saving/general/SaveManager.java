@@ -23,12 +23,12 @@ public class SaveManager<T extends SaveModel> {
 	private Task savetask = new Task();
 	private String path;
 
-	public SaveManager(Plugin plugin, Class<T> playerClass, String path, int saveInterval)
+	public SaveManager(Plugin plugin, Class<T> saveClass, String path, int saveInterval)
 	{
 		this.plugin = plugin;
-		this.saveClass = playerClass;
+		this.saveClass = saveClass;
 		this.path = path;
-		savetask.start(Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, this::saveAll, 20 * saveInterval, 20 * saveInterval));
+		if(saveInterval > 0) savetask.start(Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, this::saveAll, 20 * saveInterval, 20 * saveInterval));
 	}
 
 	private ConcurrentMap<String, T> data = Maps.newConcurrentMap();
