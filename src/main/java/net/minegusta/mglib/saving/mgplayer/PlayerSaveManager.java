@@ -50,7 +50,7 @@ public class PlayerSaveManager<T extends MGPlayerModel> {
 		try {
 			T mgp = playerClass.newInstance();
 			mgp.init(PlayerFileHandler.getFile(plugin, player.getUniqueId()));
-			mgp.onLoad();
+			mgp.onLoad(mgp.getConf());
 			data.put(player.getUniqueId().toString(), mgp);
 		} catch (Exception e)
 		{
@@ -61,7 +61,7 @@ public class PlayerSaveManager<T extends MGPlayerModel> {
 	public void saveMGPlayer(Player player)
 	{
 		MGPlayerModel mgp = getMGPlayer(player);
-		mgp.updateConf();
+		mgp.updateConf(mgp.getConf());
 		PlayerFileHandler.save(plugin, player.getUniqueId(), mgp.getConf());
 	}
 

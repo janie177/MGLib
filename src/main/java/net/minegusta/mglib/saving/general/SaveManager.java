@@ -48,7 +48,7 @@ public class SaveManager<T extends SaveModel> {
 		try {
 			T save = saveClass.newInstance();
 			save.init(FileHandler.getFile(plugin, key.toLowerCase(), path));
-			save.onLoad();
+			save.onLoad(save.getConf());
 			data.put(key.toLowerCase(), save);
 		} catch (Exception e)
 		{
@@ -59,7 +59,7 @@ public class SaveManager<T extends SaveModel> {
 	public void save(String key)
 	{
 		SaveModel save = get(key);
-		save.updateConf();
+		save.updateConf(save.getConf());
 		FileHandler.save(plugin, key.toLowerCase(), path, save.getConf());
 	}
 

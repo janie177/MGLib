@@ -6,7 +6,7 @@ public abstract class MGPlayerModel {
 
 	private FileConfiguration conf;
 
-	public abstract void onLoad();
+	public abstract void onLoad(FileConfiguration conf);
 
 	public void init(FileConfiguration conf)
 	{
@@ -17,5 +17,5 @@ public abstract class MGPlayerModel {
 		return conf;
 	}
 
-	public abstract void updateConf();
+	public abstract void updateConf(FileConfiguration conf);
 }
