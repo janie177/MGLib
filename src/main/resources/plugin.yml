@@ -2,4 +2,4 @@ main: net.minegusta.mglib.main.Main
 name: MGLib
 author: janie177
 version: ${project.version}
-depend: [WorldGuard, PermissionsEx]
+softdepend: [WorldGuard, PermissionsEx]
