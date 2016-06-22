@@ -6,6 +6,8 @@ public abstract class MGPlayerModel {
 
 	private FileConfiguration conf;
 
+	public abstract void onLoad();
+
 	public void init(FileConfiguration conf)
 	{
 		this.conf = conf;
