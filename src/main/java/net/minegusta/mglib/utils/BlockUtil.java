@@ -39,7 +39,7 @@ public class BlockUtil {
 
 	/**
 	 * Replace blocks in a radius with effects.
-	 * @param center The center to start at.
+	 * @param center The center to run at.
 	 * @param radius The radius around the center.
 	 * @param searched The materials to search for.
 	 * @param replacement The material to replace with.
@@ -62,7 +62,7 @@ public class BlockUtil {
 
 	/**
 	 *
-	 * @param l The center to start at.
+	 * @param l The center to run at.
 	 * @param radius The radius around the center.
 	 * @param materials A nested array. {{1, 0}, {2, 3}, {material, datavalue}}
 	 * @param players The players that will recieve the block change.

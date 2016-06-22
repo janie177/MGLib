@@ -11,8 +11,8 @@ public class ParticleUtil {
 		return new MovingParticleEffect(duration, effect, location, blocksPerSecond, target);
 	}
 
-	public static TargetingParticleEffect createNewTargetingParticle(int duration, Effect effect, Location location, double blocksPerSecond, Entity target)
+	public static DefaultTargetingParticleEffect createNewTargetingParticle(int duration, Effect effect, Location location, double blocksPerSecond, Entity target, boolean removeOnHit, boolean removeOnBlock, Effect impactEffect)
 	{
-		return new TargetingParticleEffect(duration, effect, location, blocksPerSecond, target.getLocation(), target);
+		return new DefaultTargetingParticleEffect(duration, effect, location, blocksPerSecond, target.getLocation(), target, removeOnHit, removeOnBlock, impactEffect);
 	}
 }

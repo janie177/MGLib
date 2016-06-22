@@ -46,6 +46,15 @@ public class RandomUtil {
 	}
 
 	/**
+	 * Get a boolean, with the promillage chance for true given.
+	 * @param promillage The input. 1000 is always true, and 1 means one in a thousand times true.
+	 * @return True if conditions are met.
+	 */
+	public static boolean promillage(int promillage) {
+		return random.nextInt(1000) + 1 <= promillage;
+	}
+
+	/**
 	 * Return a random double.
 	 *
 	 * @param max The maximum value.

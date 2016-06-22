@@ -4,8 +4,6 @@ import net.minegusta.mglib.yml.YamlUtil;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 
-import java.util.UUID;
-
 class FileHandler {
 
 	protected static FileConfiguration getFile(Plugin plugin, String fileName, String path) {

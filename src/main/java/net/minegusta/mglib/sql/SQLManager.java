@@ -4,14 +4,9 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.bukkit.Bukkit;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Optional;
 
 public class SQLManager {
-
-
-
 	/**
 	 * Make an instance of thi class to create a database connection pool manager.
 	 * Then simply call upon the getConnection method and insert SQL statements.
@@ -68,11 +63,28 @@ public class SQLManager {
 		}
 	}
 
+	/**
+	 * Create a new SQL manager instance.
+	 * @param databaseName The database to connect to.
+	 * @param user The user to connect with.
+	 * @param password The password to connect with.
+	 * @param url The url to connect with.
+	 * @return A new SQL manager which allows for easy data pooling.
+	 */
 	public static SQLManager create(String databaseName, String user, String password, String url)
 	{
 		return new SQLManager(databaseName, user, password, url);
 	}
 
+	/**
+	 * Create a new SQL manager instance.
+	 * @param databaseName The database to connect to.
+	 * @param user The user to connect with.
+	 * @param password The password to connect with.
+	 * @param url The url to connect with.
+	 * @param driver The driver to connect with.
+	 * @return A new SQL manager which allows for easy data pooling.
+	 */
 	public static SQLManager create(String databaseName, String user, String password, String url, String driver)
 	{
 		return new SQLManager(databaseName, user, password, url, driver);
@@ -80,6 +92,11 @@ public class SQLManager {
 
 	//--// Getting the connection //--//
 
+	/**
+	 * Get a connection from the pool. Make sure to manually close everything.
+	 * Use this to get ResultSets which will also have to be manually closed.
+	 * @return a connection from the pool.
+	 */
 	public Connection getConnection()
 	{
 		try {
@@ -95,23 +112,23 @@ public class SQLManager {
 
 	//--// Some generic methods //--//
 
+	/**
+	 * Create a new table in this database.
+	 * @param table The name of the table that is to be created.
+	 * @param columns The columns for the table in SQL format. (uuid VARCHAR(60), amount INTEGER, isMaus BOOLEAN, PRIMARY KEY(uuid))
+	 * @return True if the creation was successful.
+	 */
 	public boolean createTable(String table, String columns) {
 		String sqlCreate = "CREATE TABLE IF NOT EXISTS " + table + " " + columns;
 
-		try {
-			Connection conn = getConnection();
-			Statement stmt = conn.createStatement();
-			stmt.execute(sqlCreate);
-
-			stmt.close();
-			conn.close();
-
-		} catch (Exception e) {
-			return false;
-		}
-		return true;
+		return executeStatement(sqlCreate);
 	}
 
+	/**
+	 * Execute an SQL statement. This will automatically close after finishing.
+	 * @param statement The statement to execute.
+	 * @return True if successful.
+	 */
 	public boolean executeStatement(String statement)
 	{
 		try {
@@ -128,23 +145,10 @@ public class SQLManager {
 		return true;
 	}
 
-	public Optional<ResultSet> executeQuery(String statement)
-	{
-		try {
-			Connection conn = getConnection();
-			Statement stmt = conn.createStatement();
-			ResultSet set = stmt.executeQuery(statement);
-			stmt.close();
-			conn.close();
 
-			return Optional.of(set);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return Optional.empty();
-	}
-
-
+	/**
+	 * Close the connection data pool, rendering it useless. Only use this if the SQLManager will not be used at all anymore.
+	 */
 	public void closePool()
 	{
 		try {

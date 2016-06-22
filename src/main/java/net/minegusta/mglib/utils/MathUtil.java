@@ -6,7 +6,7 @@ public class MathUtil {
 
 	/**
 	 * Calculate a location on a circle around the given center, angle amount of degrees on the circle.
-	 * @param l The center to start at.
+	 * @param l The center to run at.
 	 * @param angle The angle the location should be on.
 	 * @param radius The radius from the center the location should be on.
 	 * @return The location on the circle.

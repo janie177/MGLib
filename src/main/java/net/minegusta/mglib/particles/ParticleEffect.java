@@ -1,19 +1,18 @@
 package net.minegusta.mglib.particles;
 
-import net.minegusta.mglib.main.Main;
 import net.minegusta.mglib.utils.EffectUtil;
-import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
 public abstract class ParticleEffect {
 
-	protected int duration;
-	protected Effect effect;
+	private int duration;
+	private Effect effect;
+	private int age;
 	protected Location location;
-	protected double blocksPerSecond;
-	protected Vector direction;
+	double blocksPerSecond;
+	Vector direction;
 
 	public ParticleEffect(int duration, Effect effect, Location location, double blocksPerSecond, Location target) {
 		this.duration = duration;
@@ -21,10 +20,7 @@ public abstract class ParticleEffect {
 		this.location = location.clone();
 		this.blocksPerSecond = blocksPerSecond;
 		this.direction = target.toVector().subtract(location.toVector()).normalize().multiply(blocksPerSecond/10);
-
-		Bukkit.broadcastMessage("X: " + direction.getX() + " Y: " + direction.getY() + " Z: " + direction.getZ());
-
-		start();
+		ParticleRegistry.add(this);
 	}
 
 	public abstract void extra();
@@ -34,16 +30,16 @@ public abstract class ParticleEffect {
 		location.add(direction);
 	}
 
-	private void start()
+	void run()
 	{
-		for(int i = 0; i < duration; i += 2)
+		EffectUtil.playParticle(location, effect);
+		extra();
+		updateLocation();
+		age += 2;
+
+		if(age >= duration)
 		{
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), ()->
-			{
-				EffectUtil.playParticle(location, effect);
-				extra();
-				updateLocation();
-			}, i);
+			ParticleRegistry.remove(this);
 		}
 	}
 }
