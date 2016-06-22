@@ -1,4 +1,4 @@
-package net.minegusta.mglib.saving;
+package net.minegusta.mglib.saving.mgplayer;
 
 import net.minegusta.mglib.yml.YamlUtil;
 import org.bukkit.configuration.file.FileConfiguration;

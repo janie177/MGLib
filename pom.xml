@@ -101,6 +101,20 @@
             <artifactId>PermissionsEx</artifactId>
             <version>1.23.2-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>com.mchange.v2</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/sqllibs/c3p0-0.9.5.2.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>c3p0-commons</groupId>
+            <artifactId>com.mchange.v2</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/sqllibs/mchange-commons-java-0.2.11.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>

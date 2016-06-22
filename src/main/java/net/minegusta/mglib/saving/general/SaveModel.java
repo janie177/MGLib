@@ -1,8 +1,8 @@
-package net.minegusta.mglib.saving;
+package net.minegusta.mglib.saving.general;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-public abstract class MGPlayerModel {
+public abstract class SaveModel {
 
 	private FileConfiguration conf;
 

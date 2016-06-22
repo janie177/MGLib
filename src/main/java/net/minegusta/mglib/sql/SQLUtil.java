@@ -27,6 +27,8 @@ public class SQLUtil {
 
 			Statement stmt = conn.createStatement();
 			stmt.execute(sqlCreateDB);
+
+			stmt.close();
 			conn.close();
 
 		} catch (Exception e) {
@@ -54,6 +56,8 @@ public class SQLUtil {
 			Connection conn = DriverManager.getConnection(url + database, user, pass);
 			Statement stmt = conn.createStatement();
 			stmt.execute(sqlCreate);
+
+			stmt.close();
 			conn.close();
 
 		} catch (Exception e) {

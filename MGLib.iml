@@ -35,5 +35,23 @@
     <orderEntry type="library" name="Maven: net.gravitydevelopment.updater:updater:2.3" level="project" />
     <orderEntry type="library" name="Maven: org.bukkit:bukkit:1.6.4-R2.0" level="project" />
     <orderEntry type="library" name="Maven: com.mojang:AccountsClient:unspecified" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: c3p0:com.mchange.v2:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/sqllibs/c3p0-0.9.5.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: c3p0-commons:com.mchange.v2:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/sqllibs/mchange-commons-java-0.2.11.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

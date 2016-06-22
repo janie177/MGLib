@@ -1,6 +1,5 @@
-package net.minegusta.mglib.saving;
+package net.minegusta.mglib.saving.mgplayer;
 
-import net.minegusta.mglib.saving.PlayerSaveManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;

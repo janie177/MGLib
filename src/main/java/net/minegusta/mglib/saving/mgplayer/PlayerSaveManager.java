@@ -1,4 +1,4 @@
-package net.minegusta.mglib.saving;
+package net.minegusta.mglib.saving.mgplayer;
 
 import com.google.common.collect.Maps;
 import net.minegusta.mglib.tasks.Task;
@@ -9,6 +9,16 @@ import org.bukkit.plugin.Plugin;
 import java.util.concurrent.ConcurrentMap;
 
 public class PlayerSaveManager<T extends MGPlayerModel> {
+
+
+
+	/**
+	 * Make an instance of this class to create a save manager for players.
+	 *
+	 * The save manager will handle files and automatically save at an interval.
+	 * Loading and unloading will happen on player join and quit, but can also be manually done at other times.
+	 */
+
 
 	private Plugin plugin;
 	private Class<T> playerClass;

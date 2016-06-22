@@ -8,13 +8,21 @@ import java.sql.Statement;
 
 public class SQLManager {
 
-	String password;
-	String user;
-	String driver;
-	String url;
-	String databaseName;
 
-	ComboPooledDataSource cpds = new ComboPooledDataSource();
+
+	/**
+	 * Make an instance of thi class to create a database connection pool manager.
+	 * Then simply call upon the getConnection method and insert SQL statements.
+	 */
+
+
+	private String password;
+	private String user;
+	private String driver;
+	private String url;
+	private String databaseName;
+
+	private ComboPooledDataSource cpds = new ComboPooledDataSource();
 
 
 	private SQLManager(String databaseName, String user, String password, String url, String driver)
@@ -94,6 +102,24 @@ public class SQLManager {
 			Statement stmt = conn.createStatement();
 			stmt.execute(sqlCreate);
 
+			stmt.close();
+			conn.close();
+
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean executeStatement(String statement)
+	{
+		try {
+			Connection conn = getConnection();
+			Statement stmt = conn.createStatement();
+			stmt.execute(statement);
+
+			stmt.close();
+			conn.close();
 		} catch (Exception e) {
 			return false;
 		}
@@ -106,7 +132,7 @@ public class SQLManager {
 			cpds.close();
 		} catch (Exception e)
 		{
-			Bukkit.getLogger().info("[MGLib] Error while trying to close SQL Database");
+			Bukkit.getLogger().info("[MGLib] Error while trying to close SQL Database pool.");
 			e.printStackTrace();
 		}
 	}

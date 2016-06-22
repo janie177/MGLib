@@ -1,4 +1,4 @@
-package net.minegusta.mglib.menu;
+package net.minegusta.mglib.gui;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -7,16 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.InventoryHolder;
 
-public class MenuListener implements Listener {
-
-	private String key;
-	private GUIHandler handler;
-
-	public MenuListener(String key, GUIHandler handler)
-	{
-		this.key = key;
-		this.handler = handler;
-	}
+class GUIListener implements Listener {
 
 	@EventHandler
 	public void onMenuClick(InventoryClickEvent e)
@@ -26,13 +17,14 @@ public class MenuListener implements Listener {
 			return;
 		}
 
-		//Its the spawn menu
 		InventoryHolder holder = e.getClickedInventory().getHolder();
-		if(holder instanceof MenuInventoryHolder && ((MenuInventoryHolder) holder).getKey().equalsIgnoreCase(key))
+		if(holder instanceof GUIInventoryHolder)
 		{
-			e.setCancelled(true);
-			handler.processClick(e.getSlot(), (Player) e.getWhoClicked(), e.getClickedInventory(), e.getCurrentItem(), e.getCursor());
+			String key = ((GUIInventoryHolder) holder).getKey();
+			if(GUIRegistry.contains(key))
+			{
+				GUIRegistry.getGUI(key).processClick((Player) e.getWhoClicked(), e.getSlot(), e);
+			}
 		}
 	}
-
 }
