@@ -33,7 +33,7 @@ public class HealthBoard extends ScoreBoardModel {
 		team.setDisplayName(prefix + " ");
 		team.setCanSeeFriendlyInvisibles(canSeeSameTeamInvisible);
 		if(alwaysShowTag) team.setOption(Team.Option.NAME_TAG_VISIBILITY, Team.OptionStatus.ALWAYS);
-		teams.put(teamName, team);
+		teams.put(teamName.toLowerCase(), team);
 	}
 
 	public Optional<Team> getTeam(String teamName)
