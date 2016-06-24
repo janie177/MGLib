@@ -19,7 +19,7 @@ public class ConfigurationFileManager<T extends ConfigurationModel> {
 		savetask.start(Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, this::saveConfig, 20 * saveInterval, 20 * saveInterval));
 		try {
 			model = configClass.newInstance();
-			model.init(YamlUtil.getConfiguration(plugin, "", fileName + ".yml"));
+			model.init(YamlUtil.getConfiguration(plugin, "/", fileName + ".yml"));
 			getConfigClass().onLoad(getConfigClass().getConfig());
 		} catch (Exception e)
 		{
