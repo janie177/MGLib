@@ -32,7 +32,7 @@ public class ConfigurationFileManager<T extends ConfigurationModel> {
 
 	public void reloadFromFile()
 	{
-		model.init(YamlUtil.getConfiguration(plugin, "", fileName + ".yml"));
+		model.init(YamlUtil.getConfiguration(plugin, "/", fileName + ".yml"));
 		getConfigClass().onLoad(getConfigClass().getConfig());
 	}
 
@@ -44,6 +44,6 @@ public class ConfigurationFileManager<T extends ConfigurationModel> {
 	public void saveConfig()
 	{
 		getConfigClass().onSave(getConfigClass().getConfig());
-		YamlUtil.saveFile(plugin, "", fileName + ".yml", getConfigClass().getConfig());
+		YamlUtil.saveFile(plugin, "/", fileName + ".yml", getConfigClass().getConfig());
 	}
 }
