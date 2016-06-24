@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import java.util.Collection;
 import java.util.concurrent.ConcurrentMap;
 
 public class PlayerSaveManager<T extends MGPlayerModel> {
@@ -43,6 +44,11 @@ public class PlayerSaveManager<T extends MGPlayerModel> {
 		}
 		loadMGPlayer(player);
 		return data.get(uuid);
+	}
+
+	public Collection<T> getAllPlayers()
+	{
+		return data.values();
 	}
 
 	public void loadMGPlayer(Player player)

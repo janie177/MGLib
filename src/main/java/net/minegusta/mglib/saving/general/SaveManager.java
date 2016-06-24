@@ -5,6 +5,7 @@ import net.minegusta.mglib.tasks.Task;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
+import java.util.Collection;
 import java.util.concurrent.ConcurrentMap;
 
 public class SaveManager<T extends SaveModel> {
@@ -41,6 +42,11 @@ public class SaveManager<T extends SaveModel> {
 		}
 		load(key);
 		return data.get(key.toLowerCase());
+	}
+
+	public Collection<T> getAll()
+	{
+		return data.values();
 	}
 
 	public void load(String key)
