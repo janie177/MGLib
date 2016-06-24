@@ -9,16 +9,15 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.List;
 
 public class PotionUtil {
-	/**
-	 * @param p         The player involved.
-	 * @param type      The type of the potion.
-	 * @param amplifier The amplifier.
-	 * @param seconds   The duration in seconds.
-	 */
-	public static void updatePotion(Player p, PotionEffectType type, int amplifier, int seconds) {
-		updatePotion(p, type, amplifier, seconds);
-	}
 
+
+	/**
+	 * Add a potion effect to a living entity, replacing old effects.
+	 * @param ent The entity to add it to.
+	 * @param type The type of effect.
+	 * @param amplifier The amplifier.
+	 * @param seconds The time in seconds.
+	 */
 	public static void updatePotion(LivingEntity ent, PotionEffectType type, int amplifier, int seconds) {
 		ent.getActivePotionEffects().stream().filter(pe -> pe.getType().equals(type) && pe.getAmplifier() <= amplifier).
 				forEach(pe -> {
