@@ -29,11 +29,13 @@ public class PEXUtil {
 
 	public static boolean removePermission(Player p, String permission, String worldname)
 	{
+		if(!PEX_ENABLED) return false;
 		return PEXHelper.removePermission(p, permission, worldname);
 	}
 
 	public static boolean removePermission(Player p, String permission)
 	{
+		if(!PEX_ENABLED) return false;
 		return PEXHelper.removePermission(p, permission);
 	}
 }
