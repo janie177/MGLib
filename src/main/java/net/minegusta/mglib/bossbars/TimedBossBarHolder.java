@@ -28,8 +28,8 @@ public class TimedBossBarHolder extends BossBarHolderModel {
 
 	private void start()
 	{
-		int amount = duration / interval;
-		for(int i = 0; i < amount; i++)
+		double amount = duration / interval;
+		for(int i = 0; i <= amount; i++)
 		{
 			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), ()->
 			{
@@ -44,7 +44,7 @@ public class TimedBossBarHolder extends BossBarHolderModel {
 				{
 					removeAllPlayers();
 					BossBarManager.removeBar(this);
-				}, duration + 1);
+				}, duration);
 
 	}
 }
