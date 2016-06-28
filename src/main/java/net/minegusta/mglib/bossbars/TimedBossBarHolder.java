@@ -44,7 +44,7 @@ public class TimedBossBarHolder extends BossBarHolderModel {
 				{
 					removeAllPlayers();
 					BossBarManager.removeBar(this);
-				}, duration);
+				}, duration + 1);
 
 	}
 }
