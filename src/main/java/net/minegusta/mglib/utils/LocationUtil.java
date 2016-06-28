@@ -59,11 +59,13 @@ public class LocationUtil {
 		double x = Double.parseDouble(split[0]);
 		double y = Double.parseDouble(split[1]);
 		double z = Double.parseDouble(split[2]);
-		World w = null;
+		World w;
 
 		try {
 			w = Bukkit.getWorld(split[3]);
 		} catch (Exception ignored) {
+			Bukkit.getLogger().info("[MGLib] World could not be found while converting location from string.");
+			return null;
 		}
 
 		return new Location(w, x, y, z);
