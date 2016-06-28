@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 
 import java.util.List;
 
@@ -13,11 +14,18 @@ public abstract class MovingParticleWithAction extends ParticleEffect {
 	private int interval = 20;
 	private int counter = 0;
 	private boolean blocks;
+	private String casterUuid;
 
-	public MovingParticleWithAction(int duration, Effect effect, Location location, double blocksPerSecond, Location target, boolean blocks) {
+	public MovingParticleWithAction(int duration, Effect effect, Location location, double blocksPerSecond, Location target, Player caster, boolean blocks) {
 		super(duration, effect, location, blocksPerSecond, target);
 		this.blocks = blocks;
+		this.casterUuid =caster.getUniqueId().toString();
 		scanForEntities();
+	}
+
+	public String getCasterUuid()
+	{
+		return casterUuid;
 	}
 
 	@Override
