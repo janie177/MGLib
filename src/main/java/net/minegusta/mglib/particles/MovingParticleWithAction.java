@@ -33,7 +33,7 @@ public abstract class MovingParticleWithAction extends ParticleEffect {
 			}
 			for(Entity ent : targets)
 			{
-				if(ent.getLocation().distance(location) < 1)
+				if(ent.getLocation().add(0,1,0).distance(location) < 1.5)
 				{
 					end();
 					break;
