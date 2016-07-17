@@ -31,6 +31,9 @@ public class SideBarBoard extends ScoreBoardModel {
 			Score s = objective.getScore(score.getName());
 			s.setScore(score.getAmount());
 		}
+
+		//Add the player to the board just in case they somehow changed their board without being removed.
+		player.setScoreboard(board);
 	}
 
 	@Override
