@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import java.util.Collection;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentMap;
 
 public class PlayerSaveManager<T extends MGPlayerModel> {
@@ -46,6 +47,16 @@ public class PlayerSaveManager<T extends MGPlayerModel> {
 		return data.get(uuid);
 	}
 
+	public T getMGPlayer(String uuid)
+	{
+		if(data.containsKey(uuid))
+		{
+			return data.get(uuid);
+		}
+		loadMGPlayer(uuid);
+		return data.get(uuid);
+	}
+
 	public Collection<T> getAllPlayers()
 	{
 		return data.values();
@@ -58,6 +69,19 @@ public class PlayerSaveManager<T extends MGPlayerModel> {
 			mgp.init(PlayerFileHandler.getFile(plugin, player.getUniqueId()), player.getUniqueId().toString());
 			mgp.onLoad(mgp.getConf());
 			data.put(player.getUniqueId().toString(), mgp);
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	public void loadMGPlayer(String uuid)
+	{
+		try {
+			T mgp = playerClass.newInstance();
+			mgp.init(PlayerFileHandler.getFile(plugin, UUID.fromString(uuid)), uuid);
+			mgp.onLoad(mgp.getConf());
+			data.put(uuid, mgp);
 		} catch (Exception e)
 		{
 			e.printStackTrace();
