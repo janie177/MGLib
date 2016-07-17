@@ -6,7 +6,7 @@
 
     <groupId>net.minegusta</groupId>
     <artifactId>mglib</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
 
 
     <properties> <!-- It is important to keep up to date manually. -->
