@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+//Thanks to Maximvdw for making this open source
 public class Title {
 	/* Title packet */
 	private static Class<?> packetTitle;
