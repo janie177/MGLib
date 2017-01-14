@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentMap;
 public class TaskManager {
 	private static ConcurrentMap<Integer, Task> tasks = Maps.newConcurrentMap();
 
-	public static void addTask(Task task)
+	protected static void addTask(Task task)
 	{
 		tasks.put(task.getId(), task);
 	}

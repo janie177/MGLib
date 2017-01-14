@@ -1,5 +1,7 @@
 package net.minegusta.mglib.main;
 
+import net.minegusta.mglib.combat.CombatListener;
+import net.minegusta.mglib.combat.CombatUtil;
 import net.minegusta.mglib.gui.GUIListener;
 import net.minegusta.mglib.gui.GUITask;
 import net.minegusta.mglib.particles.ParticleRegistry;
@@ -37,8 +39,16 @@ public class Main extends JavaPlugin {
 		//Listen for gui clicks
 		Bukkit.getPluginManager().registerEvents(new GUIListener(), this);
 
+		//Listen for combat tags
+		Bukkit.getPluginManager().registerEvents(new CombatListener(), this);
+
+		//Make sure the combat listener clean up task starts
+		CombatUtil.enableCleanupTask();
+
 		//Start particle task
 		ParticleRegistry.startTask();
+
+
 
 		//Enable task for inventory animation
 		GUITask.start();
