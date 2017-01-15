@@ -16,10 +16,18 @@ public class CooldownUtil {
         cooldown.put(stored, expireTime);
     }
 
+    public static void newCoolDown(String cooldownName, String id, long millis) {
+        String stored = cooldownName + id;
+        long expireTime = System.currentTimeMillis() + millis;
+        cooldown.put(stored, expireTime);
+    }
+
     public static int getRemainingSeconds(String cooldownName, String id) {
         if (!cooldown.containsKey(cooldownName + id)) return 0;
         long remainingSeconds = cooldown.get(cooldownName + id) - System.currentTimeMillis();
-        return (int) TimeUnit.MILLISECONDS.toSeconds(remainingSeconds);
+        int remaining = (int) TimeUnit.MILLISECONDS.toSeconds(remainingSeconds);
+        if(remaining == 0) remaining = 1;
+        return remaining;
     }
 
     public static boolean isCooledDown(String cooldownName, String id) {
