@@ -1,10 +1,13 @@
 package net.minegusta.mglib.yml;
 
+import com.google.common.io.Files;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
-import java.io.File;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class YamlUtil {
     //Credits to CensoredSoftware for letting me use this!
@@ -24,6 +27,32 @@ public class YamlUtil {
 
             // Create the new file.
             dataFile.createNewFile();
+
+            //Copy default values over if they exist
+            try
+            {
+                InputStream in = plugin.getResource(dataFile.getName());
+                FileOutputStream out = new FileOutputStream(dataFile);
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, StandardCharsets.UTF_8));
+                String s = null;
+                while((s = reader.readLine()) != null)
+                {
+                    writer.write(s);
+                }
+                reader.close();
+                writer.close();
+
+                in.close();
+                out.close();
+
+            } catch (Exception ignored){
+                Bukkit.getLogger().info("Failed to copy default values of newly created config.");
+
+            }
+
+
         } catch (Exception errored) {
             throw new RuntimeException("Couldn't create a data file!", errored);
         }
