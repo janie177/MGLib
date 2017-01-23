@@ -17,7 +17,7 @@ public abstract class InventoryGUI {
 	private ConcurrentMap<Inventory, Boolean> openedInvs = Maps.newConcurrentMap();
 
 	/**
-	 * Create a new insance of a GUI.
+	 * Create a new insance of a GUI. Extend this class and then make an instance of it to create a new GUI. Use this GUI object to perform actions, such as opening it.
 	 * @param name The name of the GUI.
 	 * @param rows The amount of rows in the GUI. Every row has 9 slots.
 	 * @param key The key for this GUI. Has to be unique.
