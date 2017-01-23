@@ -40,7 +40,6 @@ public class YamlUtil {
 
             } catch (Exception ignored){
                 Bukkit.getLogger().info("[MGLib] Failed to copy default values of newly created config.");
-                ignored.printStackTrace();
             }
 
 
