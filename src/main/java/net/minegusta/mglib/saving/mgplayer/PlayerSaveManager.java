@@ -26,6 +26,12 @@ public class PlayerSaveManager<T extends MGPlayerModel> {
 	private Class<T> playerClass;
 	private Task savetask = new Task();
 
+	/**
+	 * Create a new instance of save manager.
+	 * @param plugin The instance of the plugin.
+	 * @param playerClass The class that extends MGPlayerModel.
+	 * @param saveInterval The interval in seconds to save at. Use 0 to disable saving.
+	 */
 	public PlayerSaveManager(Plugin plugin, Class<T> playerClass, int saveInterval)
 	{
 		this.plugin = plugin;

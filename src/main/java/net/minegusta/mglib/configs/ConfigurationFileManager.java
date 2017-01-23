@@ -12,11 +12,17 @@ public class ConfigurationFileManager<T extends ConfigurationModel> {
 	private T model;
 	private String fileName;
 
+	/**
+	 * Create a new instance of config manager.
+	 * @param plugin The plugin instance to make it for.
+	 * @param configClass The config class extending ConfigurationModel.
+	 * @param saveInterval The save interval in seconds. Use 0 to disable saving.
+	 * @param fileName The name of the file.
+	 */
 	public ConfigurationFileManager(Plugin plugin, Class<T> configClass, int saveInterval, String fileName)
 	{
 		this.plugin = plugin;
 		this.fileName = fileName;
-		savetask.start(Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, this::saveConfig, 20 * saveInterval, 20 * saveInterval));
 		try {
 			model = configClass.newInstance();
 			model.init(YamlUtil.getConfiguration(plugin, "/", fileName + ".yml"));

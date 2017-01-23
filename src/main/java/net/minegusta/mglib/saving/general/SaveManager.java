@@ -24,6 +24,13 @@ public class SaveManager<T extends SaveModel> {
 	private Task savetask = new Task();
 	private String path;
 
+	/**
+	 * Create a new instance of save manager.
+	 * @param plugin The plugin to create it for.
+	 * @param saveClass The save class used. This class must extend SaveModel.
+	 * @param path The path to save it to.
+	 * @param saveInterval The interval in seconds to save at. Use 0 to disable saving.
+	 */
 	public SaveManager(Plugin plugin, Class<T> saveClass, String path, int saveInterval)
 	{
 		this.plugin = plugin;
