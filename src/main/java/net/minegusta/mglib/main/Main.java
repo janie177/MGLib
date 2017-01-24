@@ -48,8 +48,6 @@ public class Main extends JavaPlugin {
 		//Start particle task
 		ParticleRegistry.startTask();
 
-
-
 		//Enable task for inventory animation
 		GUITask.start();
 	}
